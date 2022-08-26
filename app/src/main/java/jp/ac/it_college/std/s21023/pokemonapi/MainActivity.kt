@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         )
         binding.btDisplay.setOnClickListener {
             val id = pokemonList[binding.spPokemon.selectedItem]
-            showPokemonInfo(id?:throw IllegalArgumentException("存在しないポケモンが選ばれました"))
+            showPokemonInfo(id?:throw IllegalArgumentException("存在しないポケモンが選択されました"))
         }
     }
 
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     @WorkerThread
     private suspend fun getPokemonInfo(id: Int): PokemonInfo {
         return withContext(Dispatchers.IO) {
-            service.fetchPokemon(id).execute().body() ?: throw IllegalStateException("ポケモンが取れませんでした")
+            service.fetchPokemon(id).execute().body() ?: throw IllegalStateException("ポケモンが取得できませんでした。")
         }
     }
 
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     @WorkerThread
     private suspend fun getTypeInfo(id: Int): TypeInfo {
         return withContext(Dispatchers.IO) {
-            service.fetchType(id).execute().body() ?: throw IllegalStateException("ポケモンが取れませんでした")
+            service.fetchType(id).execute().body() ?: throw IllegalStateException("ポケモンが取得できませんでした。")
         }
     }
 
@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity() {
     @WorkerThread
     private suspend fun getSpeciesInfo(id: Int): SpeciesInfo {
         return withContext(Dispatchers.IO) {
-            service.fetchSpecies(id).execute().body() ?: throw IllegalStateException("ポケモンが取れませんでした")
+            service.fetchSpecies(id).execute().body() ?: throw IllegalStateException("ポケモンが取得できませんでした。")
         }
     }
 
